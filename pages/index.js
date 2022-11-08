@@ -1,3 +1,4 @@
+import React from "react";
 import config from "../config.json";
 import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
@@ -8,6 +9,7 @@ function HomePage() {
     const estilosDaHomePage = {
         // backgroundColor: "red" 
     };
+    const [valorDoFiltro, setValorDofiltro] = React.useState("Angular");
 
     // console.log(config.playlists);
 
@@ -20,9 +22,9 @@ function HomePage() {
                 flex: 1,
                 // backgroundColor: "red",
             }}>
-                <Menu />
+                <Menu valorDoFiltro={valorDoFiltro} setValorDofiltro={setValorDofiltro} />
                 <Header />
-                <Timeline playlists={config.playlists}>
+                <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
                     Conteúdo
                 </Timeline>
             </div>
@@ -75,7 +77,7 @@ function Header() {
     )
 }
 
-function Timeline(propriedades) {
+function Timeline({searchValue, ...propriedades}) {
     // console.log("Dentro do componente", propriedades.playlists);
     const playlistNames = Object.keys(propriedades.playlists);
     // Statement
@@ -90,7 +92,9 @@ function Timeline(propriedades) {
                     <section>
                         <h2>{playlistName}</h2>
                         <div>
-                            {videos.map((video) => {
+                            {videos.filter((video) => {
+                                return video.title.includes(searchValue)
+                            } ).map((video) => {
                                 return (
                                     <a href={video.url}>
                                         <img src={video.thumb} />
