@@ -1,6 +1,8 @@
 import React from "react";
 import { StyledRegisterVideo } from "./style";
 
+// Whiteboarding
+// Custom Huck
 function userForm(propsDoForm){
     const [values, setValues] = React.useState(propsDoForm.initialValues);
     return{
@@ -13,6 +15,9 @@ function userForm(propsDoForm){
                 ...value,
                 [name]: value,
             });
+        },
+        cleanForm(){
+            setValues({});
         }
     };
 }
@@ -31,10 +36,13 @@ export default function RegisterVideo(){
                 ? (
                 <form onSubmit={(evento) =>{
                     evento.preventDefault();
-                    console.log(values);
+                    console.log(formCadastro.values);
+                    
+                    setFormVisivel(false);
+                    formCadastro.cleanForm();
                 }}>
                 <div>
-                <button className="close-modal" onClick={() => setFormVisivel(false)}>
+                <button type="button" className="close-modal" onClick={() => setFormVisivel(false)}>
                     x
                 </button>
                 <input placeholder="Titulo do video"
