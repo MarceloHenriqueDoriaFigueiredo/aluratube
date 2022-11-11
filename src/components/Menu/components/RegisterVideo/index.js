@@ -4,11 +4,11 @@ import { createClient } from "@supabase/supabase-js";
 
 // Whiteboarding
 // Custom Huck
-function userForm(propsDoForm){
+function userForm(propsDoForm) {
     const [values, setValues] = React.useState(propsDoForm.initialValues);
-    return{
+    return {
         values,
-        handleChange: (evento) =>{
+        handleChange: (evento) => {
             console.log(evento.target);
             const value = evento.target.value;
             const name = evento.target.name
@@ -17,7 +17,7 @@ function userForm(propsDoForm){
                 [name]: value,
             });
         },
-        cleanForm(){
+        cleanForm() {
             setValues({});
         }
     };
@@ -28,75 +28,67 @@ const PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSI
 const supabase = createClient(PROJETC_URL, PUBLIC_KEY)
 
 // get youtube thumbnail from video url
-function getThumbnail(url){
+function getThumbnail(url) {
     return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
 }
 
-export default function RegisterVideo(){
-    const formCadastro = userForm({ 
-       initialValues: {titulo: "Frost punk", url: "https://www.youtube.com/watch?v=QsqatJxAUtk"}
+export default function RegisterVideo() {
+    const formCadastro = userForm({
+        initialValues: { titulo: "Frost punk", url: "https://www.youtube.com/watch?v=QsqatJxAUtk" }
     });
-    const [formVisivel, setFormVisivel] = React.useState(true);
-   
+    const [formVisivel, setFormVisivel] = React.useState(false);
+
     console.log();
-   
+
     return (
         <StyledRegisterVideo>
             <button className="add-video" onClick={() => setFormVisivel(true)}>
                 +
             </button>
-            {formVisivel 
+            {formVisivel
                 ? (
-                <form onSubmit={(evento) =>{
-                    evento.preventDefault();
-                    console.log(formCadastro.values);
+                    <form onSubmit={(evento) => {
+                        evento.preventDefault();
+                        console.log(formCadastro.values);
 
-                    // Contrato entre o nosso front e back-end
-                    supabase.from("video").insert({
-                        title: formCadastro.values.title,
-                        url: formCadastro.values.url,
-                        thumb: getThumbnail(formCadastro.values.url),
-                        playlist: "jogos",
-                    })
-                    .then((oqueveio) => {
-                        console.log(oqueveio);
-                    })
-                    .catch((err) =>{
-                        console.log(err)
-                    })
+                        // Contrato entre o nosso front e back-end
+                        supabase.from("video").insert({
+                            title: formCadastro.values.title,
+                            url: formCadastro.values.url,
+                            thumb: getThumbnail(formCadastro.values.url),
+                            playlist: "jogos",
+                        })
+                            .then((oqueveio) => {
+                                console.log(oqueveio);
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
 
-                    setFormVisivel(false);
-                    formCadastro.cleanForm();
-                }}>
-                <div>
-                <button type="button" className="close-modal" onClick={() => setFormVisivel(false)}>
-                    x
-                </button>
-                <input placeholder="Titulo do video"
-                name="Titulo" 
-                value={formCadastro.values.titulo} 
-                onChange={formCadastro.handleChange} />
-                <input placeholder="URL" 
-                name="url"
-                value={formCadastro.values.url}
-                onChange={formCadastro.handleChange}
-                
-                // {(evento) =>{
-                //     const value = evento.target.value;
-                //     console.log(value);
-                //     setValues({
-                //         ...values,
-                //         url: value,
-                //     })
-                // }} 
-                />
-                <button type="submit">
-                    Cadastrar
-                </button>
-                </div>
-            </form>
-            )
-        : false }
+                        setFormVisivel(false);
+                        formCadastro.cleanForm();
+                    }}>
+                        <div>
+                            <button type="button" className="close-modal" onClick={() => setFormVisivel(false)}>
+                                x
+                            </button>
+                            <input placeholder="Titulo do video"
+                                name="Titulo"
+                                value={formCadastro.values.titulo}
+                                onChange={formCadastro.handleChange} />
+                            <input placeholder="URL"
+                                name="url"
+                                value={formCadastro.values.url}
+                                onChange={formCadastro.handleChange}
+
+                            />
+                            <button type="submit">
+                                Cadastrar
+                            </button>
+                        </div>
+                    </form>
+                )
+                : false}
         </StyledRegisterVideo>
     )
 }

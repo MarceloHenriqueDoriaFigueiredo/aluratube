@@ -3,47 +3,30 @@ import config from "../config.json";
 import styled from "styled-components";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
-import { createClient } from "@supabase/supabase-js";
-
-const PROJETC_URL = "https://npnjodczlwlgxgyesqus.supabase.co"
-const PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wbmpvZGN6bHdsZ3hneWVzcXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgxNjMxMzgsImV4cCI6MTk4MzczOTEzOH0.zLLsi-5ZpdiHaMBDlGfSr0osj_Jv6cQNBeWufXXuIF0"
-const supabase = createClient(PROJETC_URL, PUBLIC_KEY)
-
+import { videoService } from "../src/services/videoService";
 
 function HomePage() {
-    
+    const service = videoService();
     const [valorDoFiltro, setValorDofiltro] = React.useState("");
-    
     const [playlists, setPlaylists] = React.useState({});
 
-    React.useEffect(() =>{
+    React.useEffect(() => {
         console.log("useEffect")
-        
-        supabase.from("video")
-        .select("*")
-        .then((dados) =>{
-            console.log(dados.data)
-            const novasPlaylists = {...playlists}
-            dados.data.forEach((video) =>{
-                if (!novasPlaylists[video.playlist]){
-                    novasPlaylists[video.playlist] = [];
-                }
+        service
+            .getAllVideos()
+            .then((dados) => {
+                console.log(dados.data)
+                const novasPlaylists = { ...playlists }
+                dados.data.forEach((video) => {
+                    if (!novasPlaylists[video.playlist]) novasPlaylists[video.playlist] = [];
+                    novasPlaylists[video.playlist]?.push(video);
+                })
+                setPlaylists({ novasPlaylists })
+            });
 
-                novasPlaylists[video.playlist]?.push(video);
-            })
-            setPlaylists({novasPlaylists})
-        });
     }, []);
 
     console.log("Playlists pronto", playlists);
-
-    // config playlist
-    // const playlists = {
-    //     "jogos": {}
-    // }
-
-
-    // console.log(config.playlists);
 
     return (
         <>
@@ -64,15 +47,6 @@ function HomePage() {
 }
 
 export default HomePage
-
-// function Menu() {
-//     return (
-//         <div>
-//             Menu
-//         </div>
-//     )
-// }
-
 
 const StyledHeader = styled.div`
     background-color: ${({ theme }) => theme.backgroundLevel1};
@@ -119,7 +93,7 @@ function Header() {
     )
 }
 
-function Timeline({searchValue, ...propriedades}) {
+function Timeline({ searchValue, ...propriedades }) {
     // console.log("Dentro do componente", propriedades.playlists);
     const playlistNames = Object.keys(propriedades.playlists);
     // Statement
@@ -138,7 +112,7 @@ function Timeline({searchValue, ...propriedades}) {
                                 const titleNormalized = video.title.toLowerCase();
                                 const searchValueNormalized = searchValue.toLowerCase();
                                 return titleNormalized.includes(searchValueNormalized)
-                            } ).map((video) => {
+                            }).map((video) => {
                                 return (
                                     <a key={video.url} href={video.url}>
                                         <img src={video.thumb} />

@@ -11,12 +11,12 @@ const StyledSearch = styled.div`
   overflow: hidden;
   
   input {
-    width: 80%;
-    padding: 4px 6px;
-    border: none;
-    outline: none;
-    color: ${({ theme }) => theme.textColorBase};
-    background-color: ${({ theme }) => theme.backgroundBase};
+  width: 80%;
+  padding: 4px 6px;
+  border: none;
+  outline: none;
+  color: ${({ theme }) => theme.textColorBase};
+  background-color: ${({ theme }) => theme.backgroundBase};
   }
   button {
     flex: 1;
@@ -34,10 +34,10 @@ const StyledSearch = styled.div`
   }
 `;
 
-export default function Search({valorDoFiltro, setValorDofiltro}) {
+export default function Search({ valorDoFiltro, setValorDofiltro }) {
   const ValorDaBusca = valorDoFiltro;
   const setValorDaBusca = setValorDofiltro;
-  return(
+  return (
     <StyledSearch>
       <input type="text" onChange={(e) => setValorDaBusca(e.target.value)} value={ValorDaBusca} />
       <button>
