@@ -3,10 +3,45 @@ import config from "../config.json";
 import styled from "styled-components";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
+import { createClient } from "@supabase/supabase-js";
+
+const PROJETC_URL = "https://npnjodczlwlgxgyesqus.supabase.co"
+const PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5wbmpvZGN6bHdsZ3hneWVzcXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgxNjMxMzgsImV4cCI6MTk4MzczOTEzOH0.zLLsi-5ZpdiHaMBDlGfSr0osj_Jv6cQNBeWufXXuIF0"
+const supabase = createClient(PROJETC_URL, PUBLIC_KEY)
+
 
 function HomePage() {
     
     const [valorDoFiltro, setValorDofiltro] = React.useState("");
+    
+    const [playlists, setPlaylists] = React.useState({});
+
+    React.useEffect(() =>{
+        console.log("useEffect")
+        
+        supabase.from("video")
+        .select("*")
+        .then((dados) =>{
+            console.log(dados.data)
+            const novasPlaylists = {...playlists}
+            dados.data.forEach((video) =>{
+                if (!novasPlaylists[video.playlist]){
+                    novasPlaylists[video.playlist] = [];
+                }
+
+                novasPlaylists[video.playlist]?.push(video);
+            })
+            setPlaylists({novasPlaylists})
+        });
+    }, []);
+
+    console.log("Playlists pronto", playlists);
+
+    // config playlist
+    // const playlists = {
+    //     "jogos": {}
+    // }
+
 
     // console.log(config.playlists);
 
