@@ -53,7 +53,6 @@ Para executa o projeto, uma vez dentro da pasta do mesmo, abra o terminal e exec
 
 ```
 npm run dev
-
 ```
 E em seguida abra  http://localhost:3000 no seu navegador para ver o resultado.
 
@@ -61,7 +60,7 @@ Pra parar o projeto, em seu terminal execute o comando CRTL+C
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através [DESSE LINK](https://www.figma.com/file/BI7n8docGegPRSHoJOB553/Calend%C3%A1rio-de-Jogos-(Community)?node-id=0%3A1). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+Você pode visualizar o layout do projeto através [DESSE LINK](https://www.figma.com/file/1acrju7CLwHkSh6e7xEk9h/Aluratube?node-id=5%3A2). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
 ## :memo: Licença
 
