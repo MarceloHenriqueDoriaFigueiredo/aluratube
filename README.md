@@ -55,8 +55,13 @@ Para executa o projeto, uma vez dentro da pasta do mesmo, abra o terminal e exec
 npm run dev
 ```
 E em seguida abra  http://localhost:3000 no seu navegador para ver o resultado.
+</br>
+</br>
 
-Pra parar o projeto, em seu terminal execute o comando CRTL+C
+⚠️ Pra parar o servidor de desenvolvimento, em seu terminal execute o comando:
+```
+CRTL+C
+```
 
 ## 🔖 Layout
 
