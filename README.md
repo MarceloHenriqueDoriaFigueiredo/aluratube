@@ -35,9 +35,17 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O aluratube foi desenvolvido durante a imersão react da alura e teve como meta desenvolver uma aplicação baseada no youtube onde podemos cadastrar videos de varias plataformas
-como por exemplo do youtube, vimeo, twitch entre outros e implementar a versao dark e ligth mode da nossa aplicacao. Além disso aprendemos a utilizar e criar
-componentes com react, estilos, tra
+O aluratube foi desenvolvido durante a imersão react da alura e teve como meta desenvolver uma aplicação baseada no youtube onde podemos cadastrar videos de varias plataformas como por exemplo do youtube, vimeo, twitch entre outros e implementar a versao dark e ligth mode da nossa aplicacao. 
+
+- 1 dia: Aprendemos a utilizar e criar componentes com react, estilos, trabalhar com StyledComponents, como usar Props, children, e providers no React. 
+
+- 2 dia: Aprendems sobre State, Prop-drilling e Props.
+
+- 3 dia: Conhecemos sobre Design Systems, a importância de ter contratos de cores e valores de Design.
+
+- 4 dia: Como trabalhar com formulários e criar criar Custom Hooks com react além de importar estilos
+
+- 5 dia: Entender como usar a Fetch API, Entender os status do HTTP, Como usar a aba network do navegador, Como começar no Supabase, Criando nossa primeira tabela, Importante: não ativar a proteção de linhas do Supabase, Usamos o client público do Supabase e Criamos um service ao final para organizar melhor nosso código.
 
 ## 🔖 Layout
 
