@@ -39,13 +39,25 @@ O aluratube foi desenvolvido durante a imersão react da alura e teve como meta 
 
 - 1 dia: Aprendemos a utilizar e criar componentes com react, estilos, trabalhar com StyledComponents, como usar Props, children, e providers no React. 
 
-- 2 dia: Aprendems sobre State, Prop-drilling e Props.
+- 2 dia: Aprendemos sobre State, Prop-drilling e Props.
 
 - 3 dia: Conhecemos sobre Design Systems, a importância de ter contratos de cores e valores de Design.
 
 - 4 dia: Como trabalhar com formulários e criar criar Custom Hooks com react além de importar estilos
 
 - 5 dia: Entender como usar a Fetch API, Entender os status do HTTP, Como usar a aba network do navegador, Como começar no Supabase, Criando nossa primeira tabela, Importante: não ativar a proteção de linhas do Supabase, Usamos o client público do Supabase e Criamos um service ao final para organizar melhor nosso código.
+
+## ⚒️ Abrir e roda o projeto
+
+Para executa o projeto, uma vez dentro da pasta do mesmo, abra o terminal e execute o servidor de desenvolvimento:
+
+```
+npm run dev
+
+```
+E em seguida abra  http://localhost:3000 no seu navegador para ver o resultado.
+
+Pra parar o projeto, em seu terminal execute o comando CRTL+C
 
 ## 🔖 Layout
 
